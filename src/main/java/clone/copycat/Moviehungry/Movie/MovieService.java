@@ -26,6 +26,11 @@ public class MovieService {
         this.mapperMovie = mapperMovie;
     }
 
+    public List<MovieDTO> getAllMovies() {
+        List<MovieDAO> allMovies = movieRepository.findAll();
+        return allMovies.stream().map(x -> mapperMovie.MovieDAO_MovieDTO(x)).collect(Collectors.toList());
+    }
+
     public MovieDTO addMovie(CreateMovieDTO createMovieDTO) {
         Optional<MovieDAO> ifMovieExits = movieRepository.findByUniqueId(createMovieDTO.getUniqueId());
         if (ifMovieExits.isPresent()) {
@@ -51,10 +56,10 @@ public class MovieService {
     }
 
     public List<MovieDTO> findMovieByTittle(String tittle) {
-       Optional<List<MovieDAO>> movieByTittle= movieRepository.findByName(tittle);
-        if(movieByTittle.isEmpty()){
+        Optional<List<MovieDAO>> movieByTittle = movieRepository.findByName(tittle);
+        if (movieByTittle.isEmpty()) {
             throw new NosuchEntity("please enter a valid tittle");
         }
-        return movieByTittle.get().stream().map(x->mapperMovie.MovieDAO_MovieDTO(x)).collect(Collectors.toList());
+        return movieByTittle.get().stream().map(x -> mapperMovie.MovieDAO_MovieDTO(x)).collect(Collectors.toList());
     }
 }

@@ -12,22 +12,29 @@ import java.util.List;
 @RequestMapping("movies")
 public class MovieConrtoller {
     private MovieService movieservice;
+
     @Autowired
     public MovieConrtoller(MovieService movieservice) {
         this.movieservice = movieservice;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MovieDTO> getMovieById(@RequestParam Long id, @RequestParam Long uuid) {
+    @GetMapping("search/{title}")
+    public ResponseEntity<List<MovieDTO>> getMovieByTitle(@PathVariable String title) {
+        List<MovieDTO> movieByTittle = movieservice.findMovieByTittle(title);
+        return ResponseEntity.ok(movieByTittle);
+    }
+    @GetMapping("/")
+    public ResponseEntity<List<MovieDTO>> getAllMovies() {
+        List<MovieDTO> getAllMovies=movieservice.getAllMovies();
+        return ResponseEntity.ok(getAllMovies);
+
+    }
+    @GetMapping("/search")
+    public ResponseEntity<MovieDTO> getMovieById(@RequestParam(required = false) Long id, @RequestParam(required = false) Long uuid) {
         if (id == null && uuid == null) {
             throw new NotValidArguments("please pass some valid argument", "nither id nor uuid is present in the Request param");
         }
         return ResponseEntity.ok(movieservice.findMovieByidOruuid(id, uuid));
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<List<MovieDTO>> getMovieByTitle(@RequestParam String title) {
-        List<MovieDTO>movieByTittle= movieservice.findMovieByTittle(title);
-    return ResponseEntity.ok(movieByTittle);
-    }
 }
