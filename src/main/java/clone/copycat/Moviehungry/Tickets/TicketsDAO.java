@@ -1,4 +1,4 @@
-package clone.copycat.Moviehungry.Show.ShowSeats.Tickets;
+package clone.copycat.Moviehungry.Tickets;
 
 public class TicketsDAO {
 }

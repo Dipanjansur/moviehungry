@@ -3,6 +3,7 @@ package clone.copycat.Moviehungry.Movie;
 import clone.copycat.Moviehungry.Review.ReviewDAO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.boot.actuate.endpoint.Show;
@@ -13,12 +14,18 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "movies")
 public class MovieDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long uuid;
     private String name;
+    @Column(unique = true)
+    private Long uniqueId;
     private LocalDate releaseyear;
     private Genre movieGenre;
     private Long movieRating;
