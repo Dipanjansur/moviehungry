@@ -20,7 +20,7 @@ public class TheathersDAO {
     // TOdo: use some partial data like postgis and see the oppertunity for it in hibernate
     private String Cityname;
     @ManyToMany
-    @JoinTable(name = "show_theather", joinColumns = @JoinColumn(name = "shows_uuid"), inverseJoinColumns = @JoinColumn(name = "theathers_uuid"))
+    @JoinTable(name = "show_theather", joinColumns = @JoinColumn(name = "theathers_uuid"), inverseJoinColumns = @JoinColumn(name = "shows_uuid"))
     private List<ShowDAO> showsDao;
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

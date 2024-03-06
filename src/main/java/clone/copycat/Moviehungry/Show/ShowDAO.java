@@ -16,15 +16,17 @@ public class ShowDAO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long uuid;
     @ManyToOne
-    @JoinColumn(name ="movies_uuid")
+    @JoinColumn(name = "movies_uuid")
     private MovieDAO movie;
-    @ManyToMany(mappedBy ="showsDao")
-    private List<TheathersDAO> Theather;
-    private  LocalDateTime showTime;
+//    @ManyToMany(mappedBy ="showsDao")
+//    private List<TheathersDAO> Theather;
+    @ManyToMany(mappedBy = "runningShows")
+    private List<MovieDAO> runnedMovie;
+    private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;
     @CreationTimestamp
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime creationTime;
     @UpdateTimestamp
     @Column(nullable = false)

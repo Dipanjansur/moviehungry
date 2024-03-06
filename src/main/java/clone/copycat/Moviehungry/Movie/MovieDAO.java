@@ -2,6 +2,7 @@ package clone.copycat.Moviehungry.Movie;
 
 import clone.copycat.Moviehungry.Review.ReviewDAO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,13 +28,17 @@ public class MovieDAO {
     @Column(unique = true)
     private Long uniqueId;
     private LocalDate releaseyear;
+    @Enumerated(EnumType.STRING)
     private Genre movieGenre;
-    private Long movieRating;
+    private Long numberofReviews;
+    private Double movieRating;
     @OneToMany
-    @JoinColumn(name = "reviews_uuid")
+    @JsonIgnore
+    @JoinColumn(name = "ratedMovie")
     private Set<ReviewDAO> movieReviews;
     @ManyToMany
-    @JoinTable( name = "course_like", joinColumns =@JoinColumn(name = "reviews_uuid"),inverseJoinColumns =@JoinColumn(name = "movies_uuid"))
+    @JsonIgnore
+    @JoinTable( name = "liveshow_movie", joinColumns =@JoinColumn(name ="movies_uuid"),inverseJoinColumns =@JoinColumn(name ="shows_uuid"))
     private List<ShowDAO> runningShows;
     @CreationTimestamp
     @Column(nullable = false,updatable = false)
