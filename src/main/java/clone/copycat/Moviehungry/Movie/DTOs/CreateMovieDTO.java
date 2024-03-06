@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CreateMovieDTO {
     private String name;
     private LocalDate releaseyear;
