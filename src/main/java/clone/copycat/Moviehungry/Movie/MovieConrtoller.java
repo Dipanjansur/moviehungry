@@ -8,6 +8,25 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The MovieConrtoller class is a controller class that handles HTTP requests related to movies.
+ * It provides endpoints for searching movies by title, retrieving all movies, and searching movies by ID or UUID.
+ * The class is responsible for interacting with the MovieService to perform the necessary operations.
+ *
+ * Endpoints:
+ * - GET /movies/search/{title}: Retrieves a list of movies that match the given title.
+ * - GET /movies/: Retrieves a list of all movies.
+ * - GET /movies/search: Retrieves a movie by ID or UUID.
+ *
+ * Example usage:
+ * MovieConrtoller movieConrtoller = new MovieConrtoller(movieService);
+ * ResponseEntity<List<MovieDTO>> movieByTitle = movieConrtoller.getMovieByTitle("The Avengers");
+ * ResponseEntity<List<MovieDTO>> allMovies = movieConrtoller.getAllMovies();
+ * ResponseEntity<MovieDTO> movieById = movieConrtoller.getMovieById(1L, null);
+ *
+ * Note: This class requires the MovieService to be injected via constructor injection.
+ */
+
 @RestController
 @RequestMapping("movies")
 public class MovieConrtoller {
@@ -17,7 +36,13 @@ public class MovieConrtoller {
     public MovieConrtoller(MovieService movieservice) {
         this.movieservice = movieservice;
     }
-
+    /**
+     * This method is used to fetch a list of movies by their title.
+     *
+     * @param title The title of the movie to be searched.
+     * @return ResponseEntity containing a list of MovieDTO objects that match the provided title, and HTTP status code.
+     * @throws NosuchEntity If no movie with the provided title is found.
+     */
     @GetMapping("search/{title}")
     public ResponseEntity<List<MovieDTO>> getMovieByTitle(@PathVariable String title) {
         List<MovieDTO> movieByTittle = movieservice.findMovieByTittle(title);

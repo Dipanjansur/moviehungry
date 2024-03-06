@@ -1,8 +1,9 @@
 package clone.copycat.Moviehungry.Show;
 
 import clone.copycat.Moviehungry.Movie.MovieDAO;
-import clone.copycat.Moviehungry.Theather.TheathersDAO;
+import clone.copycat.Moviehungry.Theather.TheatersDAO;
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,6 +12,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "shows")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShowDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +24,8 @@ public class ShowDAO {
     @ManyToOne
     @JoinColumn(name = "movies_uuid")
     private MovieDAO movie;
-//    @ManyToMany(mappedBy ="showsDao")
-//    private List<TheathersDAO> Theather;
-    @ManyToMany(mappedBy = "runningShows")
-    private List<MovieDAO> runnedMovie;
+    @ManyToMany(mappedBy ="showsDao")
+    private List<TheatersDAO> theaters;
     private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;
