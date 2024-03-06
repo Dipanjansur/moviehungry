@@ -45,7 +45,9 @@ The application should now be up and running on http://localhost:8080.
 Here are some of the available endpoints:
 
 **Available endpoints**
- there is a ```.postman-collection.json``` file linked to this project feel free to test this endpoints
+
+_there is a ```.postman-collection.json``` file linked to this project feel free to test this endpoints_
+
 ---
 ### Contributing
 - Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
