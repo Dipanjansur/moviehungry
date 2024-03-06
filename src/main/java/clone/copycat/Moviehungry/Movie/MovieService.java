@@ -37,6 +37,8 @@ public class MovieService {
             throw new NosuchEntity("A movie is already preasent with the same Id");
         } else {
             MovieDAO transformed = mapperMovie.MovieDAO_CreateMovieDTO(createMovieDTO);
+            transformed.setMovieRating(0.0);
+            transformed.setNumberofReviews(0l);
             movieRepository.save(transformed);
             return mapperMovie.MovieDAO_MovieDTO(transformed);
         }

@@ -32,7 +32,7 @@ public class MovieDAO {
     private Genre movieGenre;
     private Long numberofReviews;
     private Double movieRating;
-    @OneToMany
+    @OneToMany(fetch =FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "ratedMovie")
     private Set<ReviewDAO> movieReviews;

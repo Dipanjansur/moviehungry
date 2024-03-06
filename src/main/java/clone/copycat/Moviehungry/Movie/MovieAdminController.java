@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("movies/Admin")
+@RequestMapping("movies/admin")
 public class MovieAdminController {
     private MovieService movieService;
 

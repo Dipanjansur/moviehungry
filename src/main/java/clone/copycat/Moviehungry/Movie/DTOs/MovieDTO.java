@@ -3,6 +3,7 @@ package clone.copycat.Moviehungry.Movie.DTOs;
 import clone.copycat.Moviehungry.Movie.Genre;
 import clone.copycat.Moviehungry.Review.ReviewDAO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class MovieDTO {
     private Long uuid;
     private String name;
