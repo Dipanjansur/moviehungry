@@ -32,13 +32,11 @@ public class MovieDAO {
     private Genre movieGenre;
     private Long numberofReviews;
     private Double movieRating;
-    @OneToMany(fetch =FetchType.LAZY)
+    @OneToMany(fetch =FetchType.LAZY,mappedBy = "ratedMovie")
     @JsonIgnore
-    @JoinColumn(name = "ratedMovie")
     private Set<ReviewDAO> movieReviews;
-    @ManyToMany
+    @OneToMany(mappedBy = "movie")
     @JsonIgnore
-    @JoinTable( name = "liveshow_movie", joinColumns =@JoinColumn(name ="movies_uuid"),inverseJoinColumns =@JoinColumn(name ="shows_uuid"))
     private List<ShowDAO> runningShows;
     @CreationTimestamp
     @Column(nullable = false,updatable = false)

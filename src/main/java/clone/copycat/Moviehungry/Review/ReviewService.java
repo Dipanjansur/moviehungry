@@ -5,7 +5,7 @@ import clone.copycat.Moviehungry.Movie.MovieDAO;
 import clone.copycat.Moviehungry.Movie.MovieRepository;
 import clone.copycat.Moviehungry.Review.DTOs.CreateReviewDTO;
 import clone.copycat.Moviehungry.Review.DTOs.ReviewDTO;
-import clone.copycat.Moviehungry.Users.UsersDAO;
+import clone.copycat.Moviehungry.Review.mappers.ReviewMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

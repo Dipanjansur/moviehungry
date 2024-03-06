@@ -1,10 +1,11 @@
-package clone.copycat.Moviehungry.Review;
+package clone.copycat.Moviehungry.Review.mappers;
 
 import clone.copycat.Moviehungry.Movie.DTOs.CreateMovieDTO;
 import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
 import clone.copycat.Moviehungry.Movie.MovieDAO;
 import clone.copycat.Moviehungry.Review.DTOs.CreateReviewDTO;
 import clone.copycat.Moviehungry.Review.DTOs.ReviewDTO;
+import clone.copycat.Moviehungry.Review.ReviewDAO;
 import lombok.Getter;
 import lombok.Setter;
 import org.mapstruct.Mapper;
