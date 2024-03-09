@@ -1,6 +1,7 @@
 package clone.copycat.Moviehungry;
 
 import clone.copycat.Moviehungry.Customexceptions.IllegalArguments;
+import clone.copycat.Moviehungry.Customexceptions.NosuchEntity;
 import clone.copycat.Moviehungry.Customexceptions.NotValidArguments;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,14 @@ public class ExceptionController {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-//    @ExceptionHandler(value = NoSuchMethodError.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ResponseEntity<String> handleIllegalArguments(IllegalArguments ex) {
-//        return ResponseEntity.badRequest().body("Illegal arguments exception occurred: " + ex.getMessage());
+    @ExceptionHandler(NosuchEntity.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> handleNosuchEntity(NosuchEntity ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+//    @ExceptionHandler(RuntimeException.class)
+//    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+//    public ResponseEntity<String> handleIllegalArguments(RuntimeException ex) {
+//        return ResponseEntity.badRequest().body("RUntime exceptions" + ex.getMessage());
 //    }
 }

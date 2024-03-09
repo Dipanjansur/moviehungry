@@ -2,8 +2,7 @@ package clone.copycat.Moviehungry.Theather;
 
 import clone.copycat.Moviehungry.Show.ShowDAO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,6 +13,9 @@ import java.util.List;
 @Table(name = "theaters")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class TheatersDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
