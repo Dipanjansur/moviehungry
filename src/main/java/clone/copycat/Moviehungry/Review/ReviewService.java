@@ -46,7 +46,7 @@ public class ReviewService {
         if (retrivedMoviedByid.isEmpty()) {
             throw new NosuchEntity("no suck movie exists to be rated");
         }
-        Optional<ReviewDAO> retrivedReviewsByMovies = reviewRepository.findByReviewratedMovie(movieuuid);
+        List<ReviewDAO> retrivedReviewsByMovies = reviewRepository.findByReviewratedMovie(movieuuid);
         return retrivedReviewsByMovies.stream().map(x -> reviewMapper.ReviewDAO_ReviewDTO(x)).collect(Collectors.toList());
     }
 
