@@ -1,6 +1,7 @@
 package clone.copycat.Moviehungry.Show;
 
 import clone.copycat.Moviehungry.Movie.MovieDAO;
+import clone.copycat.Moviehungry.ShowSeats.ShowSeatsDAO;
 import clone.copycat.Moviehungry.Theather.TheatersDAO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,6 +28,8 @@ public class ShowDAO {
     @ManyToOne
     @JoinColumn(name = "theatres_uuid")
     private TheatersDAO theaters;
+    @OneToMany
+    private List<ShowSeatsDAO> bookableseats;
     private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;

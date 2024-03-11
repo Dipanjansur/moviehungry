@@ -1,14 +1,14 @@
 package clone.copycat.Moviehungry.Customexceptions;
 
-public class IllegalArguments extends  RuntimeException{
+public class DouplicateEntity extends RuntimeException{
     private String additionalMessage;
     private final String errorCode = "1-0";
 
-    public IllegalArguments(String message) {
+    public DouplicateEntity(String message) {
         super(message);
     }
 
-    public IllegalArguments(String message, String additionalMessage) {
+    public DouplicateEntity(String message, String additionalMessage) {
         super(message);
         this.additionalMessage = additionalMessage;
     }
