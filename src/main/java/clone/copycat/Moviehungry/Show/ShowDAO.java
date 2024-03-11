@@ -24,8 +24,9 @@ public class ShowDAO {
     @ManyToOne
     @JoinColumn(name = "movies_uuid")
     private MovieDAO movie;
-    @ManyToMany(mappedBy ="showsDao")
-    private List<TheatersDAO> theaters;
+    @ManyToOne
+    @JoinColumn(name = "theatres_uuid")
+    private TheatersDAO theaters;
     private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;

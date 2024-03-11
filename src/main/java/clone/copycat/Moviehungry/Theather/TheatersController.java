@@ -32,7 +32,9 @@ public class TheatersController {
 
     @GetMapping("/cityName")
     public ResponseEntity<List<TheatherDTO>> findTheathersBYCity(@RequestParam String cityName) {
-        return ResponseEntity.ok(theatersService.findTheathersBYCity(cityName));
+        List<TheatherDTO>retval=theatersService.findTheathersBYCity(cityName);
+        System.out.println(retval);
+        return ResponseEntity.ok(retval);
     }
 
     //    public ResponseEntity<List<TheatersDAO>> findTheathersByMovieId(Long movieId){

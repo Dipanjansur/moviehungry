@@ -10,18 +10,20 @@ import java.util.Optional;
 
 @Repository
 public interface ShowsRepository extends JpaRepository<ShowDAO, Long> {
-    @Query(value = "select * from shows s,movies m,theaters th where m.uuid=s.runnedMovie_uuid and s.theaters_uuid=th.uuid and m.name=? and th.cityname=?", nativeQuery = true)
-    public Optional<List<ShowDAO>> findByMovieNameAndCity(Long movieId, String city);
+    @Query(value = "select s.* from shows s,movies m,theaters th where m.uuid=s.movies.uuid and s.theaters_uuid=th.uuid and m.name=:movieId and th.cityname=:city", nativeQuery = true)
+    public List<ShowDAO> findByMovieNameAndCity(Long movieId, String city);
 
-    @Query(value = "select * from shows s,theaters th where s.theaters_uuid=th.uuid and s.theaters_cityname=?", nativeQuery = true)
-    public Optional<List<ShowDAO>> findByCityname(String city);
+    @Query(value = "select s.*,th.name from shows s, theaters th where th.cityname = :cityname", nativeQuery = true)
+    public List<ShowDAO> findByCityname(String cityname);
 
-    @Query(value = "select * from shows s,movies m,theaters th where m.uuid=s.runnedMovie_uuid and s.theaters_uuid=th.uuid and th.name=? and th.cityname=?", nativeQuery = true)
-    Optional<List<ShowDAO>> findByTheaterAndCity(String theaterName, String cityName);
+    @Query(value = "select s.* from shows s,movies m,theaters th where th.name=:theaterName and th.cityname=:cityName", nativeQuery = true)
+    public List<ShowDAO> findByTheaterAndCity(String theaterName, String cityName);
 
-    @Query(value = "select * from shows s,movies m,theaters th where m.uuid=s.runnedMovie_uuid and s.theaters_uuid=th.uuid and m.name=? and th.cityname=? and th.name=?", nativeQuery = true)
-    public Optional<List<ShowDAO>> findByMovieNameAndCityAndTheather(Long movieId, String city, String theathername);
+    @Query(value = "select s.* from shows s,movies m,theaters th where m.uuid=:movieId and th.name=:theatherName", nativeQuery = true)
+    public List<ShowDAO> findbyMoviesAndTheathers(Long movieId,String theatherName);
+    @Query(value = "select s.* from shows s,movies m,theaters th where s.theaters_uuid=th.uuid and m.name=:movieId and th.cityname=:city and th.name=:theathername", nativeQuery = true)
+    public List<ShowDAO>findByMovieNameAndCityAndTheather(Long movieId, String city, String theathername);
 
-    @Query(value = "select * from shows s,movies m,theaters th where m.uuid=s.runnedMovie_uuid and s.theaters_uuid=th.uuid and m.name=? and th.name=?", nativeQuery = true)
-    public Optional<List<ShowDAO>> findByTheatherAndCity(String  theathername, String city);
-    }
+    @Query(value = "select s.* from shows s,movies m,theaters th where s.theaters_uuid=th.uuid and m.name=:theathername and th.name=:city", nativeQuery = true)
+    public List<ShowDAO> findByTheatherAndCity(String theathername, String city);
+}

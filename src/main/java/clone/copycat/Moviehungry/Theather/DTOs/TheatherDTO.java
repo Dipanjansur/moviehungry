@@ -1,5 +1,6 @@
 package clone.copycat.Moviehungry.Theather.DTOs;
 
+import clone.copycat.Moviehungry.Show.DTOs.ShowDTO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -20,6 +21,6 @@ public class TheatherDTO {
     private Long uuid;
     private String name;
     private String cityname;
-    private List<ShowDAO> showsDao;
+    private List<ShowDTO> showsDao;
 
 }

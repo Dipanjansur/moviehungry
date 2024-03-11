@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MovieHungryApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MovieHungryApplication.class, args);
 	}
 

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import java.sql.SQLSyntaxErrorException;
+
 @ControllerAdvice
 public class ExceptionController {
     @ExceptionHandler(value = { NoSuchFieldException.class, IllegalArguments.class, NotValidArguments.class})
@@ -23,9 +25,9 @@ public class ExceptionController {
     public ResponseEntity<String> handleNosuchEntity(NosuchEntity ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
-//    @ExceptionHandler(RuntimeException.class)
-//    @ResponseStatus(HttpStatus.BAD_GATEWAY)
-//    public ResponseEntity<String> handleIllegalArguments(RuntimeException ex) {
-//        return ResponseEntity.badRequest().body("RUntime exceptions" + ex.getMessage());
-//    }
+    @ExceptionHandler(SQLSyntaxErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<String> handleIllegalArguments(RuntimeException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }

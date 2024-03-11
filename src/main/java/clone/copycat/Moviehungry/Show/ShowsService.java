@@ -6,6 +6,10 @@ import clone.copycat.Moviehungry.Movie.MovieRepository;
 import clone.copycat.Moviehungry.Show.DTOs.CreateShowDTO;
 import clone.copycat.Moviehungry.Show.DTOs.ShowDTO;
 import clone.copycat.Moviehungry.Show.Mapper.ShowMapper;
+import clone.copycat.Moviehungry.Theather.TheatersDAO;
+import clone.copycat.Moviehungry.Theather.TheatersRepo;
+import clone.copycat.Moviehungry.Theather.TheatersService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,59 +19,72 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
+@NoArgsConstructor
 public class ShowsService {
     private ShowsRepository showsRepository;
     private MovieRepository movieRepository;
     private ShowMapper showMapper;
+    private TheatersRepo theatersRepo;
 
     @Autowired
-    public ShowsService(ShowsRepository showsRepository, MovieRepository movieRepository, ShowMapper showMapper) {
+    public ShowsService(ShowsRepository showsRepository, MovieRepository movieRepository, ShowMapper showMapper, TheatersRepo theatersRepo) {
         this.showsRepository = showsRepository;
         this.movieRepository = movieRepository;
         this.showMapper = showMapper;
+        this.theatersRepo = theatersRepo;
+    }
+    public List<ShowDTO> findAllShows() {
+        return showsRepository.findAll().stream().map(x -> showMapper.SHOWDAO_SHOWDTO(x)).collect(Collectors.toList());
     }
 
-    public Optional<List<ShowDTO>> findByMovieNameAndCity(Long movieId, String city) {
+    public List<ShowDTO> findByMovieNameAndCity(Long movieId, String city) {
+        System.out.println(movieId+"...."+city);
         return Optioncal_Mapper(() -> showsRepository.findByMovieNameAndCity(movieId, city));
 
     }
 
-    public Optional<List<ShowDTO>> findByTheatherAndCity(String name, String city) {
-        return Optioncal_Mapper(() -> showsRepository.findByTheatherAndCity(name, city));
-
-    }
-
-    public Optional<List<ShowDTO>> findByCityname(String city) {
+    public List<ShowDTO> findByCityname(String city) {
+        System.out.println(city);
         return Optioncal_Mapper(() -> showsRepository.findByCityname(city));
 
     }
 
-    public Optional<List<ShowDTO>> findByTheaterAndCity(String theaterName, String cityName) {
+    public List<ShowDTO> findByTheaterAndCity(String theaterName, String cityName) {
+        System.out.println(cityName+"...."+theaterName);
         return Optioncal_Mapper(() -> showsRepository.findByTheaterAndCity(theaterName, cityName));
     }
+    public List<ShowDTO> findbyMoviesAndTheathers(Long movieId,String theatherName){
+        return Optioncal_Mapper(() -> showsRepository.findbyMoviesAndTheathers(movieId, theatherName));
+    }
 
-    public Optional<List<ShowDTO>> findByMovieNameAndCityAndTheather(Long movieId, String city, String theathername) {
+    public List<ShowDTO> findByMovieNameAndCityAndTheather(Long movieId, String city, String theathername) {
+        System.out.println(movieId+"...."+city+"...."+theathername);
         return Optioncal_Mapper(() -> showsRepository.findByMovieNameAndCityAndTheather(movieId, city, theathername));
     }
 
-    private Optional<List<ShowDTO>> Optioncal_Mapper(Supplier<Optional<List<ShowDAO>>> supplier) {
-        Optional<List<ShowDAO>> retval = supplier.get();
-        if (retval.isEmpty()) {
+    private List<ShowDTO> Optioncal_Mapper(Supplier<List<ShowDAO>> supplier) {
+        Supplier<List<ShowDAO>> retval = supplier;
+        if (retval.get().isEmpty()) {
             throw new NosuchEntity("no shows is found nearby");
         } else {
-            return Optional.of(retval.get().stream().map(showMapper::SHOWDAO_SHOWDTO).collect(Collectors.toList()));
+            return retval.get().stream().map(
+                    showMapper::SHOWDAO_SHOWDTO).collect(Collectors.toList());
         }
     }
 
-    public Optional<ShowDTO> addNewShow(CreateShowDTO showdao) {
+    public ShowDTO addNewShow(CreateShowDTO showdao) {
         Optional<MovieDAO> retMovie = movieRepository.findById(Long.valueOf(showdao.getMovieId()));
         if (retMovie.isEmpty()) {
-            throw new NosuchEntity("no such movies exists to rate it");
+            throw new NosuchEntity("no such movies exists to add shows for it");
         }
-        ShowDAO newShow=showMapper.CreateShowDTO_ShowDAO(showdao);
-        newShow.builder().movie(retMovie.get()).build();
+        Optional<TheatersDAO> retTheather=theatersRepo.findById(showdao.getTheaterId());
+        if (retMovie.isEmpty()) {
+            throw new NosuchEntity("no such theathers  exists to add shows for it");
+        }
+        ShowDAO newShow = new ShowDAO().builder().movie(retMovie.get()).theaters(retTheather.get()).showTime(showdao.getShowTime()).build();
+        //newShow.builder().movie(retMovie.get()).build();
         showsRepository.save(newShow);
-        return Optional.ofNullable(showMapper.SHOWDAO_SHOWDTO(newShow));
+        return showMapper.SHOWDAO_SHOWDTO(newShow);
     }
 
 }

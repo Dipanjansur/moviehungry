@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class CreateShowDTO {
     private String movieId;
-    private List<String> theatersId;
+    private Long theaterId;
     private LocalDateTime showTime;
     private Long totalCapacity;
 }

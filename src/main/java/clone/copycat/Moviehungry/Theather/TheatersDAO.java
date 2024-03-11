@@ -1,6 +1,7 @@
 package clone.copycat.Moviehungry.Theather;
 
 import clone.copycat.Moviehungry.Show.ShowDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,8 +24,8 @@ public class TheatersDAO {
     private String name;
     // TOdo: use some partial data like postgis and see the oppertunity for it in hibernate
     private String cityname;
-    @ManyToMany
-    @JoinTable(name = "show_theatre", joinColumns = @JoinColumn(name = "theathers_uuid"), inverseJoinColumns = @JoinColumn(name = "shows_uuid"))
+    @OneToMany(mappedBy = "theaters")
+    @JsonIgnore
     private List<ShowDAO> showsDao;
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
