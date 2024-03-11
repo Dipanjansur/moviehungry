@@ -1,158 +1,396 @@
 {
 	"info": {
-		"_postman_id": "766ad5a1-de1b-4fcb-81d9-972276b1e41e",
+		"_postman_id": "26475c64-7c21-4a76-82dc-dc8519d63a66",
 		"name": "MovieHungy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13979123"
 	},
 	"item": [
 		{
-			"name": "AdminAddMovies",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Bazigaar\",\r\n  \"releaseyear\": \"1994-09-23\",\r\n  \"uniqueId\": 2234567810,\r\n  \"movieGenre\": \"THRILLER\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "movies",
+			"item": [
+				{
+					"name": "AdminAddMovies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"The Matrix\",\r\n  \"releaseyear\": \"1999-03-31\",\r\n  \"uniqueId\": 7890123456,\r\n  \"movieGenre\": \"SCI_FI\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/movies/admin/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"movies",
+								"admin",
+								"add"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:9090/movies/admin/add",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"movies",
-						"admin",
-						"add"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllMovies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/movies/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"movies",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SearchMovieById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/movies/search?id=2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"movies",
-						"search"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "2"
+				{
+					"name": "SearchMovieById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/movies/search?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"movies",
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SearchMovieBytittle",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/movies/search/The Shawshank Redemption",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"movies",
-						"search",
-						"The Shawshank Redemption"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Set Rating",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"movieRatings\":10\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:9090/reviews/movies/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"reviews",
-						"movies",
-						"2"
-					]
+				{
+					"name": "SearchMovieBytittle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/movies/search/The Shawshank Redemption",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"movies",
+								"search",
+								"The Shawshank Redemption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllMovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "ReviewsBYmovies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/reviews/movies/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"reviews",
-						"movies",
-						"1"
-					]
+			"name": "rating",
+			"item": [
+				{
+					"name": "Set Rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieRatings\":17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/reviews/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"reviews",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReviewsBYmovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/reviews/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"reviews",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "theather",
+			"item": [
+				{
+					"name": "getAlltheathers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/theathers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"theathers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TheatherByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/theathers/theather?TheatherName=hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"theathers",
+								"theather"
+							],
+							"query": [
+								{
+									"key": "TheatherName",
+									"value": "hello"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TheatherBycityname",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/theathers/cityName?cityName=kolkata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"theathers",
+								"cityName"
+							],
+							"query": [
+								{
+									"key": "cityName",
+									"value": "kolkata"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTheather",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\":\"PVR Central Park\",\n\"cityname\":\"kolkata\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/theathers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"theathers",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shows",
+			"item": [
+				{
+					"name": "GelAllShows",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\":1,\n    \"showsDao\":\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/shows/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"shows",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddShows",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"movieId\": \"1\",\n    \"theatersId\": [\n        \"1\",\n        \"2\"\n    ],\n    \"showTime\": \"2024-03-10T18:00:00\",\n    \"totalCapacity\": 100\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/shows/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"shows",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShowMyCityName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/shows/cityname?cityname=kolkata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"shows",
+								"cityname"
+							],
+							"query": [
+								{
+									"key": "cityname",
+									"value": "kolkata"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShowSearchMultiple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/shows/search?theaterName=Inox Centarl park&cityName=kolkata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"shows",
+								"search"
+							],
+							"query": [
+								{
+									"key": "theaterName",
+									"value": "Inox Centarl park"
+								},
+								{
+									"key": "cityName",
+									"value": "kolkata"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
