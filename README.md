@@ -49,5 +49,14 @@ Here are some of the available endpoints:
 _there is a ```.postman-collection.json``` file linked to this project feel free to test this endpoints_
 
 ---
+## Future upgrade scopes
+- more compact response structure 
+- implement caching using Redis or memcached
+- code readability and more compact code quality
+- add Pagination support for some data heavy endpoints
+- test cases like unit test irrigation test using Junit and Mockito
+- Spring Security using session cookies and JWT (major)
+- implement ACL setup (Major feature)
+---
 ### Contributing
 - Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
