@@ -20,10 +20,8 @@ import java.util.List;
 public class TicketsDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @OneToMany
-    @JoinColumn(name = "seat_id")
+    private Long uuid;
+    @OneToMany(mappedBy ="tickets")
     private List<ShowSeatsDAO> seat;
     @ManyToOne
     @JoinColumn(name="users_id")

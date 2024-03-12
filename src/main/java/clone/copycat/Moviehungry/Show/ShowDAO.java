@@ -28,8 +28,8 @@ public class ShowDAO {
     @ManyToOne
     @JoinColumn(name = "theatres_uuid")
     private TheatersDAO theaters;
-    @OneToMany
-    private List<ShowSeatsDAO> bookableseats;
+    @OneToMany(mappedBy ="parentshow")
+    private List<ShowSeatsDAO> bookableSeats;
     private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class UsersDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long uuid;
     @Column(nullable = false, unique = true)
     private String userName;
     @Column(nullable = false)
