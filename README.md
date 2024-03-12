@@ -7,7 +7,7 @@ This project is a backend REST API for a movie review service built using Spring
 ---
 ## Brief about Architecture
 - lets start with the RDMS schema design
-  ![](/home/undefined/Dipanjan_works/tech_works/backend/spring_boot/moviehungry/DB_schema.png)
+  ![](./DB_schema.png)
 
 ### Installation
 Before running the application, ensure you have the following prerequisites installed:
@@ -45,6 +45,10 @@ mvn spring-boot:run
 ~~~
 The application should now be up and running on http://localhost:8080.
 
+---
+**Documentation**
+- ```http://localhost:9090/swagger-ui/index.html``` to see all the API endpoints docs and actuator endpoints
+---
 **Usage**
 - Once the application is running, this is a restfull API service running using http protocol so use some HTTP client like Postman or cURL to interact with the REST API endpoints. 
 Here are some of the available endpoints:
@@ -62,6 +66,7 @@ _there is a ```.postman-collection.json``` file linked to this project feel free
 - test cases like unit test irrigation test using Junit and Mockito
 - Spring Security using session cookies and JWT (major)
 - implement ACL setup (Major feature)
+- try to implement https try doing self certified certifications
 ---
 ### Contributing
 - Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
