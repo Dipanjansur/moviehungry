@@ -1,8 +1,6 @@
 package clone.copycat.Moviehungry.ShowSeats.DTOs;
 
 import clone.copycat.Moviehungry.Show.ShowDAO;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Getter
@@ -10,7 +8,9 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookinsSeatsDTO {
+public class CreateSeatsDTO {
     private String  parentshow;
     private String seatNumber;
+    private Integer rowNum;
+    private String columnNum;
 }

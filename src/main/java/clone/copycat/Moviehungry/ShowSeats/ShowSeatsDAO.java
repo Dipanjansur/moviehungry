@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDateTime;
 
@@ -23,9 +24,10 @@ public class ShowSeatsDAO {
     @ManyToOne
     @JoinColumn(name = "shows_parent")
     private ShowDAO parentshow;
+    @Column(unique=true)
     private String seatNumber;
     private Integer rowNum;
-    private Integer columnNum;
+    private String columnNum;
     private Boolean available;
     @ManyToOne
     @JoinColumn(name = "tickets_uuid")

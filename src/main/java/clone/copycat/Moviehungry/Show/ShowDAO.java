@@ -3,9 +3,11 @@ package clone.copycat.Moviehungry.Show;
 import clone.copycat.Moviehungry.Movie.MovieDAO;
 import clone.copycat.Moviehungry.ShowSeats.ShowSeatsDAO;
 import clone.copycat.Moviehungry.Theather.TheatersDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -29,6 +31,7 @@ public class ShowDAO {
     @JoinColumn(name = "theatres_uuid")
     private TheatersDAO theaters;
     @OneToMany(mappedBy ="parentshow")
+    @JsonIgnore // Applied to avoid infinite recursion
     private List<ShowSeatsDAO> bookableSeats;
     private LocalDateTime showTime;
     private Long totalCapacity;

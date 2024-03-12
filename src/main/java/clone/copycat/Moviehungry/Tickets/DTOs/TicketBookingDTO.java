@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketBookingDTO {
-    private Long id;
     private List<String> seatIds;
     private String userId;
 }

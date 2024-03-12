@@ -62,7 +62,7 @@ public class TicketsService {
                 .filter(Optional::isPresent) // Filter out empty Optionals
                 .map(Optional::get) // Extract ShowSeatsDAO objects from Optionals
                 .collect(Collectors.toList());
-        Optional<UsersDAO> usersDAO = usersRepository.findById(ticketBookingDTO.getId());
+        Optional<UsersDAO> usersDAO = usersRepository.findById(Long.valueOf(ticketBookingDTO.getUserId()));
         TicketsDAO ticketsDAO = TicketsDAO.builder().seat(validSeats).bookedBy(usersDAO.get()).build();
         TicketsDAO savedTicket = ticketsRepo.save(ticketsDAO);
         validSeats.stream().forEach(x -> {

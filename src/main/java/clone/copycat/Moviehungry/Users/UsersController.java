@@ -6,10 +6,7 @@ import clone.copycat.Moviehungry.Users.DTOs.UserDTO;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +20,7 @@ public class UsersController {
     public UsersController(UsersService usersService) {
         this.usersService = usersService;
     }
+
     @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getALlMembers() {
         return ResponseEntity.ok(usersService.getAllMembers());
@@ -56,11 +54,12 @@ public class UsersController {
         } else if (uuid == null) {
             return ResponseEntity.ok(usersService.getMemberByUserName(UserName));
         } else {
-            throw  new IllegalArguments("please pass an valid argument");
+            throw new IllegalArguments("please pass an valid argument");
         }
         // return ResponseEntity.ok(usersService.getMembersByUserNameorPassword(uuid, UserName));
     }
 
+    @PostMapping("/")
     public ResponseEntity<Optional<UserDTO>> createMembers(CreateUserDTO newUsers) {
         return ResponseEntity.ok(usersService.createMembers(newUsers));
     }

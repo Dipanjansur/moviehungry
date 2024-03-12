@@ -67,6 +67,7 @@ _there is a ```.postman-collection.json``` file linked to this project feel free
 - Spring Security using session cookies and JWT (major)
 - implement ACL setup (Major feature)
 - try to implement https try doing self certified certifications
+- maven profiles support
 ---
 ### Contributing
 - Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.

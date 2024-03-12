@@ -3,6 +3,7 @@ package clone.copycat.Moviehungry.Tickets;
 import clone.copycat.Moviehungry.ShowSeats.ShowSeatsDAO;
 import clone.copycat.Moviehungry.Users.UserRoles;
 import clone.copycat.Moviehungry.Users.UsersDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,6 +23,7 @@ public class TicketsDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uuid;
     @OneToMany(mappedBy ="tickets")
+    @JsonIgnore
     private List<ShowSeatsDAO> seat;
     @ManyToOne
     @JoinColumn(name="users_id")
