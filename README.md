@@ -4,6 +4,11 @@
 
 This project is a backend REST API for a movie review service built using Spring Boot, JPA Hibernate, and MySQL. It allows users to manage movie reviews, theaters, and showtimes.
 
+---
+## Brief about Architecture
+- lets start with the RDMS schema design
+  ![](/home/undefined/Dipanjan_works/tech_works/backend/spring_boot/moviehungry/DB_schema.png)
+
 ### Installation
 Before running the application, ensure you have the following prerequisites installed:
 
