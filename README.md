@@ -44,10 +44,47 @@ Run the application:
 mvn spring-boot:run
 ~~~
 The application should now be up and running on http://localhost:8080.
+- *for any modifiation of the property please use application.yml in resources folder*
 
----
+###### my applicalication.yml file
+```dtd
+server:
+  port: {DESIRED SERVER PORT}
+  #  datasource:
+  #    # H2 configuration (active by default)
+  #    h2:
+  #      url: jdbc:h2:mem:testdb
+  #      username: sa
+  #      password:
+  #      driver-class-name: org.h2.Driver
+spring:
+  mvc.static-path-pattern: /content/**
+  web.resources.static-locations: file:/tmp/images
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+  datasource:
+    url: {YOUR DB url}
+    username: {YOUR DB USERNAME}
+    password: {YOUR db PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+log4j:
+  logger:
+    org:
+      hibernate:
+        hql: debug
+        type: TRACE
+springdoc:
+  pathsToMatch: /**
+  show-actuator: true
+
+
+```
 **Documentation**
-- ```http://localhost:9090/swagger-ui/index.html``` to see all the API endpoints docs and actuator endpoints
+- ```http://localhost:{YOUR SERVER PORT}/swagger-ui/index.html``` to see all the API endpoints docs and actuator endpoints
 ---
 **Usage**
 - Once the application is running, this is a restfull API service running using http protocol so use some HTTP client like Postman or cURL to interact with the REST API endpoints. 
