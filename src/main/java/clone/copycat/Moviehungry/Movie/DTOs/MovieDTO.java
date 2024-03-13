@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class MovieDTO {
     private Long uuid;

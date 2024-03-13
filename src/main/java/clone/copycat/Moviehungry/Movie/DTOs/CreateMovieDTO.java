@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CreateMovieDTO {
     private String name;

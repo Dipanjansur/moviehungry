@@ -1,5 +1,6 @@
 package clone.copycat.Moviehungry.Movie;
 
+import clone.copycat.Moviehungry.Aspects.LoggerAspect;
 import clone.copycat.Moviehungry.Customexceptions.NotValidArguments;
 import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class MovieConrtoller {
         List<MovieDTO> movieByTittle = movieservice.findMovieByTittle(title);
         return ResponseEntity.ok(movieByTittle);
     }
+   // @LoggerAspect
     @GetMapping("/")
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> getAllMovies=movieservice.getAllMovies();
