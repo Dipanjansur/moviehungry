@@ -1,6 +1,7 @@
 package clone.copycat.Moviehungry.Review;
 
 import clone.copycat.Moviehungry.Movie.MovieDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -23,6 +24,7 @@ public class ReviewDAO {
     private double movieRatings;
     @ManyToOne
     @JoinColumn(name = "movies_uuid")
+    @JsonIgnore
     private MovieDAO ratedMovie;
     @CreationTimestamp
     @Column(nullable = false,updatable = false)

@@ -1,6 +1,8 @@
 package clone.copycat.Moviehungry.Show.DTOs;
 
+import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
 import clone.copycat.Moviehungry.Movie.MovieDAO;
+import clone.copycat.Moviehungry.Theather.DTOs.AddTheatersDTO;
 import clone.copycat.Moviehungry.Theather.DTOs.TheatherDTO;
 import clone.copycat.Moviehungry.Theather.TheatersDAO;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,8 +21,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ShowDTO {
     private Long uuid;
-    private MovieDAO movie;
-    private TheatersDAO theaters;
+    private Long movieId;
+    private String movieName;
+    private Long theatherId;
+    private String theatherName;
     private LocalDateTime showTime;
     private Long totalCapacity;
     private Long filledCapacity;

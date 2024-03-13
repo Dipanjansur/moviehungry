@@ -1,5 +1,6 @@
 package clone.copycat.Moviehungry.Review.DTOs;
 
+import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
 import clone.copycat.Moviehungry.Movie.MovieDAO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.JoinColumn;
@@ -13,9 +14,8 @@ import lombok.*;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ReviewDTO {
-    private  long uuid;
-//    private long numberOfreview;
-//    private double totalRating;
+    private Long uuid;
     private double movieRatings;
-    private MovieDAO ratedMovie;
+    private Long movieId;
+    private String movieName;
 }

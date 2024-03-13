@@ -33,10 +33,8 @@ public class MovieDAO {
     private Long numberofReviews;
     private Double movieRating;
     @OneToMany(fetch =FetchType.LAZY,mappedBy = "ratedMovie")
-    @JsonIgnore
     private Set<ReviewDAO> movieReviews;
     @OneToMany(mappedBy = "movie")
-    @JsonIgnore
     private List<ShowDAO> runningShows;
     @CreationTimestamp
     @Column(nullable = false,updatable = false)

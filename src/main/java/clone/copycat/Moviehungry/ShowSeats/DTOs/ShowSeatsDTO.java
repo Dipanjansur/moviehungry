@@ -1,5 +1,6 @@
 package clone.copycat.Moviehungry.ShowSeats.DTOs;
 
+import clone.copycat.Moviehungry.Show.DTOs.ShowDTO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +13,8 @@ import lombok.*;
 @NoArgsConstructor
 public class ShowSeatsDTO {
     private Long uuid;
-    private ShowDAO parentshow;
+    private Long showuuid;
+    private String MovieName;
     private String seatNumber;
     private long rowNumber;
     private long columnNumber;
