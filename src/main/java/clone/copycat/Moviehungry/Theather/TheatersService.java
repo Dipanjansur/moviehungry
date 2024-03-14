@@ -43,11 +43,12 @@ public class TheatersService {
     }
 
     public List<TheatherDTO> findTheatherByName(String TheatherName) {
-        List<TheatersDAO> temptheather = theatersRepo.findByName(TheatherName);
-        if (temptheather.isEmpty()) {
-            throw new NosuchEntity("no such theaters Exists by the theatreName");
-        }
-        return temptheather.stream().map(x -> theatherMapper.TheatherDAO_TheathersDTO(x)).collect(Collectors.toList());
+            List<TheatersDAO> temptheather = theatersRepo.findByName(TheatherName);
+            if (temptheather.isEmpty()) {
+                throw new NosuchEntity("no such theaters Exists by the theatreName");
+            }
+            return temptheather.stream().map(x -> theatherMapper.TheatherDAO_TheathersDTO(x)).collect(Collectors.toList());
+
     }
 
     public List<TheatherDTO>findTheathersBYCity(String cityName) {

@@ -4,7 +4,6 @@ import lombok.*;
 
 @Getter
 @Setter
-//@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class NosuchEntity extends RuntimeException {
@@ -16,7 +15,8 @@ public class NosuchEntity extends RuntimeException {
     }
 
     public NosuchEntity(String message, String additionalMessage) {
-        super(message);
+        //super(message);
         this.additionalMessage = additionalMessage;
     }
+
 }

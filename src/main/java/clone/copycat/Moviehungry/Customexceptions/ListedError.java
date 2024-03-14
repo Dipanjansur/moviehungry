@@ -1,10 +1,15 @@
 package clone.copycat.Moviehungry.Customexceptions;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 @AllArgsConstructor
+@Getter
+@Setter
+//@NoArgsConstructor
 public class ListedError extends RuntimeException{
     List<RuntimeException> listoferrors;
     private final String errorCode = "11-0";

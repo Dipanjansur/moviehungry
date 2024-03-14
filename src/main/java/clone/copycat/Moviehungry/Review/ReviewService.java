@@ -47,7 +47,13 @@ public class ReviewService {
             throw new NosuchEntity("no suck movie exists to be rated");
         }
         List<ReviewDAO> retrivedReviewsByMovies = reviewRepository.findByReviewratedMovie(movieuuid);
-        return retrivedReviewsByMovies.stream().map(x -> reviewMapper.ReviewDAO_ReviewDTO(x)).collect(Collectors.toList());
+        return retrivedReviewsByMovies.stream().map(x ->
+        {
+        ReviewDTO tempval=reviewMapper.ReviewDAO_ReviewDTO(x);
+        tempval.setMovieId(null);
+        tempval.setMovieName(null);
+        return tempval;
+        }).collect(Collectors.toList());
     }
 
     @Transactional
