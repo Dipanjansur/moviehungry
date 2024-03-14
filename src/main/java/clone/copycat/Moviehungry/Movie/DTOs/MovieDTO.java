@@ -24,7 +24,7 @@ public class MovieDTO {
     private LocalDate releaseyear;
     private Genre movieGenre;
     private Long numberofReviews;
-    private Long movieRating;
+    private Double movieRating;
     private Set<ReviewDTO> movieReviews;
     private List<ShowDTO> runningShows;
 }

@@ -5,6 +5,7 @@ import clone.copycat.Moviehungry.Show.DTOs.ShowDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,10 +15,11 @@ import java.util.Optional;
 @RequestMapping("/shows")
 public class ShowsController {
     private ShowsService showsService;
+
     private final ShowsRepository showsRepository;
 
     @Autowired
-    public ShowsController(ShowsService showsService,ShowsRepository showsRepository) {
+    public ShowsController(ShowsService showsService, ShowsRepository showsRepository) {
         this.showsService = showsService;
         this.showsRepository = showsRepository;
     }
@@ -55,7 +57,7 @@ public class ShowsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ShowDTO> addShow(@RequestBody CreateShowDTO showResource) {
+    public ResponseEntity<ShowDTO> addShow(@RequestBody @Validated CreateShowDTO showResource) {
         ShowDTO retval = showsService.addNewShow(showResource);
         return ResponseEntity.ok(retval);
     }

@@ -61,7 +61,7 @@ public class ReviewService {
         reviewRepository.save(transformed);
         double newrating = 0.0;
         if (retrivedMoviedByid.get().getNumberofReviews() > 0) {
-            newrating = (retrivedMoviedByid.get().getMovieRating() + createReviewDTO.getMovieRatings()) / retrivedMoviedByid.get().getNumberofReviews();
+            newrating = (retrivedMoviedByid.get().getMovieRating() + createReviewDTO.getMovieRatings()) / (retrivedMoviedByid.get().getNumberofReviews()+1);
         } else {
             newrating = createReviewDTO.getMovieRatings();
         }
@@ -72,6 +72,7 @@ public class ReviewService {
         Set<ReviewDAO> returnedValue = retrivedMoviedByid.get().getMovieReviews();
         return returnedValue.stream().map(x -> {
             ReviewDTO retreview = reviewMapper.ReviewDAO_ReviewDTO(x);
+            retreview.setMovieId(null);
 //            retreview.setNumberOfreview(x.getRatedMovie().getNumberofReviews());
 //            retreview.setTotalRating(x.getRatedMovie().getMovieRating());
             return retreview;

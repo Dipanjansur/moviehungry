@@ -1,12 +1,13 @@
 package clone.copycat.Moviehungry.Theather.Mappers;
 
+import clone.copycat.Moviehungry.Show.Mapper.ShowMapper;
 import clone.copycat.Moviehungry.Theather.DTOs.AddMoviesToTheathersDTO;
 import clone.copycat.Moviehungry.Theather.DTOs.AddTheatersDTO;
 import clone.copycat.Moviehungry.Theather.DTOs.TheatherDTO;
 import clone.copycat.Moviehungry.Theather.TheatersDAO;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel ="spring")
+@Mapper(componentModel ="spring",uses = ShowMapper.class)
 public interface TheatherMapper {
     TheatherDTO TheatherDAO_TheathersDTO(TheatersDAO theatersDAO);
     AddTheatersDTO TheatherDAO_AddTheatersDTO(TheatersDAO theatersDAO);

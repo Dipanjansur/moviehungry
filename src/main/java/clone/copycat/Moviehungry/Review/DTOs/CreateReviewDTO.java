@@ -16,7 +16,6 @@ import org.springframework.format.annotation.NumberFormat;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CreateReviewDTO {
-    @NotBlank(message = "Movie ratings must not be null")
     @DecimalMin(value = "0.0", message = "Movie ratings must be at least 0.0")
     @DecimalMax(value = "10.0", message = "Movie ratings must not exceed 10.0")
     @NumberFormat(pattern = "##.#0")

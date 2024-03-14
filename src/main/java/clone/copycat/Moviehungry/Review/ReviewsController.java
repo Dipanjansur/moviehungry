@@ -31,7 +31,7 @@ public class ReviewsController {
     }
 
     @PostMapping("/movies/{movieuuid}")
-    public ResponseEntity<List<ReviewDTO>> setReviews(@PathVariable @NotBlank Long movieuuid, @Validated @RequestBody CreateReviewDTO createReviewDTO) {
+    public ResponseEntity<List<ReviewDTO>> setReviews(@PathVariable Long movieuuid, @Validated @RequestBody CreateReviewDTO createReviewDTO) {
         return ResponseEntity.ok(reviewService.setReviews(movieuuid,createReviewDTO));
     }
 }

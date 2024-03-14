@@ -33,12 +33,12 @@ public class ShowsService {
         this.showMapper = showMapper;
         this.theatersRepo = theatersRepo;
     }
+
     public List<ShowDTO> findAllShows() {
         return showsRepository.findAll().stream().map(x -> showMapper.SHOWDAO_SHOWDTO(x)).collect(Collectors.toList());
     }
 
     public List<ShowDTO> findByMovieNameAndCity(Long movieId, String city) {
-        System.out.println(movieId+"...."+city);
         return Optioncal_Mapper(() -> showsRepository.findByMovieNameAndCity(movieId, city));
 
     }
@@ -50,15 +50,16 @@ public class ShowsService {
     }
 
     public List<ShowDTO> findByTheaterAndCity(String theaterName, String cityName) {
-        System.out.println(cityName+"...."+theaterName);
+        System.out.println(cityName + "...." + theaterName);
         return Optioncal_Mapper(() -> showsRepository.findByTheaterAndCity(theaterName, cityName));
     }
-    public List<ShowDTO> findbyMoviesAndTheathers(Long movieId,String theatherName){
+
+    public List<ShowDTO> findbyMoviesAndTheathers(Long movieId, String theatherName) {
         return Optioncal_Mapper(() -> showsRepository.findbyMoviesAndTheathers(movieId, theatherName));
     }
 
     public List<ShowDTO> findByMovieNameAndCityAndTheather(Long movieId, String city, String theathername) {
-        System.out.println(movieId+"...."+city+"...."+theathername);
+        System.out.println(movieId + "...." + city + "...." + theathername);
         return Optioncal_Mapper(() -> showsRepository.findByMovieNameAndCityAndTheather(movieId, city, theathername));
     }
 
@@ -77,7 +78,7 @@ public class ShowsService {
         if (retMovie.isEmpty()) {
             throw new NosuchEntity("no such movies exists to add shows for it");
         }
-        Optional<TheatersDAO> retTheather=theatersRepo.findById(showdao.getTheaterId());
+        Optional<TheatersDAO> retTheather = theatersRepo.findById(showdao.getTheaterId());
         if (retMovie.isEmpty()) {
             throw new NosuchEntity("no such theathers  exists to add shows for it");
         }

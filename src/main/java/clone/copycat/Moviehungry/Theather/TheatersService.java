@@ -1,6 +1,8 @@
 package clone.copycat.Moviehungry.Theather;
 
 import clone.copycat.Moviehungry.Customexceptions.NosuchEntity;
+import clone.copycat.Moviehungry.Show.DTOs.ShowDTO;
+import clone.copycat.Moviehungry.Show.Mapper.ShowMapper;
 import clone.copycat.Moviehungry.Show.ShowDAO;
 import clone.copycat.Moviehungry.Show.ShowsRepository;
 import clone.copycat.Moviehungry.Show.ShowsService;
@@ -20,12 +22,14 @@ public class TheatersService {
     private TheatersRepo theatersRepo;
     private TheatherMapper theatherMapper;
     private ShowsRepository showsRepository;
+    private ShowMapper showsMapper;
 
     @Autowired
-    public TheatersService(TheatersRepo theatersRepo, TheatherMapper theatherMapper, ShowsRepository showsRepository) {
+    public TheatersService(TheatersRepo theatersRepo, TheatherMapper theatherMapper, ShowsRepository showsRepository,ShowMapper showsMapper) {
         this.theatersRepo = theatersRepo;
         this.theatherMapper = theatherMapper;
         this.showsRepository = showsRepository;
+        this.showsMapper = showsMapper;
     }
 
     public List<TheatherDTO> findAllTheathers() throws NosuchEntity {
@@ -67,7 +71,7 @@ public class TheatersService {
     public TheatherDTO addNewShows(AddMoviesToTheathersDTO addMoviesToTheathersDTO) {
         Long uuid = addMoviesToTheathersDTO.getUuid();
         Optional<TheatersDAO> retrivedDao = theatersRepo.findById(uuid);
-        List<ShowDAO> jsonparseShows = addMoviesToTheathersDTO.getShowsDao();
+        List<ShowDTO> jsonparseShows = addMoviesToTheathersDTO.getShowDTOs();
         List<ShowDAO> retrivedShowList = retrivedDao.get().getShowsDao();
         jsonparseShows.stream().filter(x -> {
             Optional<ShowDAO> retrived = showsRepository.findById(x.getUuid());
@@ -76,7 +80,7 @@ public class TheatersService {
             } else {
                 return true;
             }
-        }).forEach(retrivedShowList::add);
+        }).forEach(x->retrivedShowList.add(showsMapper.ShowDTO_ShowDAO(x)));
         retrivedDao.get().setShowsDao(retrivedShowList);
         return theatherMapper.TheatherDAO_TheathersDTO(theatersRepo.save(retrivedDao.get()));
 

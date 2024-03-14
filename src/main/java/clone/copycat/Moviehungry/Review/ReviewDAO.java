@@ -22,13 +22,12 @@ import java.time.LocalDateTime;
 @Table(name = "reviews")
 public class ReviewDAO {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uuid;
-    @NotBlank(message = "Movie ratings must not be null")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long uuid;
     @DecimalMin(value = "0.0", message = "Movie ratings must be at least 0.0")
     @DecimalMax(value = "10.0", message = "Movie ratings must not exceed 10.0")
     @NumberFormat(pattern = "##.#0")
-    private double movieRatings;
+    private Double movieRatings;
     @ManyToOne
     @JoinColumn(name = "movies_uuid")
     @JsonIgnore
