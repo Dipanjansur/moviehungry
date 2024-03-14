@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "movies")
+@Table(name = "movies",indexes = @Index(columnList = "uniqueId"))
 public class MovieDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

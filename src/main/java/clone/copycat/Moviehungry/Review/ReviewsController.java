@@ -2,8 +2,10 @@ package clone.copycat.Moviehungry.Review;
 
 import clone.copycat.Moviehungry.Review.DTOs.CreateReviewDTO;
 import clone.copycat.Moviehungry.Review.DTOs.ReviewDTO;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ReviewsController {
     }
 
     @PostMapping("/movies/{movieuuid}")
-    public ResponseEntity<List<ReviewDTO>> setReviews(@PathVariable Long movieuuid, @RequestBody CreateReviewDTO createReviewDTO) {
+    public ResponseEntity<List<ReviewDTO>> setReviews(@PathVariable @NotBlank Long movieuuid, @Validated @RequestBody CreateReviewDTO createReviewDTO) {
         return ResponseEntity.ok(reviewService.setReviews(movieuuid,createReviewDTO));
     }
 }
