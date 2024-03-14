@@ -1,10 +1,12 @@
 package clone.copycat.Moviehungry.Movie;
 
 import clone.copycat.Moviehungry.Aspects.LoggerAspect;
+import clone.copycat.Moviehungry.Customexceptions.NosuchEntity;
 import clone.copycat.Moviehungry.Customexceptions.NotValidArguments;
 import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,19 +47,33 @@ public class MovieConrtoller {
      * @throws NosuchEntity If no movie with the provided title is found.
      */
     @GetMapping("search/{title}")
-    public ResponseEntity<List<MovieDTO>> getMovieByTitle(@PathVariable String title) {
+    public ResponseEntity<List<MovieDTO>> getMovieByTitle(@Validated @PathVariable String title) {
         List<MovieDTO> movieByTittle = movieservice.findMovieByTittle(title);
         return ResponseEntity.ok(movieByTittle);
     }
-   // @LoggerAspect
+
+    /**
+     * This method is used to fetch a list of all movies.
+     *
+     * @return ResponseEntity containing a list of all movies, and HTTP status code.
+     */
     @GetMapping("/")
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> getAllMovies=movieservice.getAllMovies();
         return ResponseEntity.ok(getAllMovies);
 
     }
+
+    /**
+     * This method is used to fetch a movie by ID or UUID.
+     *
+     * @param id The ID of the movie to be searched.
+     * @param uuid The UUID of the movie to be searched.
+     * @return ResponseEntity containing a MovieDTO object that matches the provided ID or UUID, and HTTP status code.
+     * @throws NotValidArguments If neither ID nor UUID is provided.
+     */
     @GetMapping("/search")
-    public ResponseEntity<MovieDTO> getMovieById(@RequestParam(required = false) Long id, @RequestParam(required = false) Long uuid) {
+    public ResponseEntity<MovieDTO> getMovieById(@Validated @RequestParam(required = false) Long id, @RequestParam(required = false) Long uuid) {
         if (id == null && uuid == null) {
             throw new NotValidArguments("please pass some valid argument", "nither id nor uuid is present in the Request param");
         }

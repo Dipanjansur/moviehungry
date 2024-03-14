@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 
 
 public enum Genre{
+    UNKNOWN,
     ACTION,
     THRILLER,
     HORROR,

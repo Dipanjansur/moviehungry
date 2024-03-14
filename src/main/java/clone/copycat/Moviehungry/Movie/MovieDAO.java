@@ -2,12 +2,12 @@ package clone.copycat.Moviehungry.Movie;
 
 import clone.copycat.Moviehungry.Review.ReviewDAO;
 import clone.copycat.Moviehungry.Show.ShowDAO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.boot.actuate.endpoint.Show;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,6 +24,7 @@ public class MovieDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long uuid;
+    @Size(min = 1,max=50,message="please provide a movie length the should be greater than 1 and less than 50")
     private String name;
     @Column(unique = true)
     private Long uniqueId;
@@ -34,7 +35,7 @@ public class MovieDAO {
     private Double movieRating;
     @OneToMany(fetch =FetchType.LAZY,mappedBy = "ratedMovie")
     private Set<ReviewDAO> movieReviews;
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(fetch =FetchType.LAZY,mappedBy = "movie")
     private List<ShowDAO> runningShows;
     @CreationTimestamp
     @Column(nullable = false,updatable = false)
@@ -42,4 +43,8 @@ public class MovieDAO {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedTime;
+    @AssertTrue(message = "Release year must be after 1990")
+    public boolean setreleaseYear() {
+        return releaseyear == null || releaseyear.isAfter(LocalDate.of(1990, 12, 31));
+    }
 }

@@ -17,6 +17,16 @@ import java.util.Arrays;
 public class LoggingAspects {
     private static Logger LOG = LoggerFactory.getLogger(LoggingAspects.class);
 
+    /**
+     * This aspect will work on all the Movie packages
+     * This aspect is used to log the method calls and their arguments, as well as the execution time of the method.
+     * The aspect uses the Around advice type, which allows it to intercept method calls and execute code before and after the method call.
+     * The aspect uses the ProceedingJoinPoint parameter to access information about the method call, such as the method name and arguments.
+     * The aspect logs the method call and arguments using the SLF4J logging framework.
+     * The aspect also logs the execution time of the method using the System.currentTimeMillis() method.
+     * If the method call throws an exception, the aspect logs the exception using the SLF4J logging framework.
+     * The aspect returns the result of the method call.
+     */
     @Around("execution(* clone.copycat.Moviehungry.Movie.*.*(..))")
     public Object AroundLogger(ProceedingJoinPoint point) throws Throwable {
         String methodName = point.getSignature().getName();

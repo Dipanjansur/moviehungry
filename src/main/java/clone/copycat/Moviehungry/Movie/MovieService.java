@@ -1,5 +1,6 @@
 package clone.copycat.Moviehungry.Movie;
 
+import clone.copycat.Moviehungry.Customexceptions.IllegalArguments;
 import clone.copycat.Moviehungry.Customexceptions.NosuchEntity;
 import clone.copycat.Moviehungry.Movie.DTOs.CreateMovieDTO;
 import clone.copycat.Moviehungry.Movie.DTOs.MovieDTO;
@@ -48,8 +49,10 @@ public class MovieService {
         Optional<MovieDAO> founduser;
         if (id != null) {
             founduser = movieRepository.findById(id);
-        } else {
+        } else if (uuid != null) {
             founduser = movieRepository.findByUniqueId(uuid);
+        } else {
+            throw new IllegalArguments("please pass in a valid uuid or Id to continue");
         }
         if (founduser.isEmpty()) {
             throw new NosuchEntity("No such user is present in the platform");
