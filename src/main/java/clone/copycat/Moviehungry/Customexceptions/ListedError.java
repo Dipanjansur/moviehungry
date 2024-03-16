@@ -12,7 +12,7 @@ import java.util.List;
 //@NoArgsConstructor
 public class ListedError extends RuntimeException{
     List<RuntimeException> listoferrors;
-    private final String errorCode = "11-0";
+    private final String errorCode = "1-3";
 
     public ListedError() {
         super();
