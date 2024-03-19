@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface MovieRepository extends JpaRepository<MovieDAO,Long> {
     public Optional<MovieDAO> findByUniqueId(long uniqueId);
     public Optional<List<MovieDAO>> findByName(String name);
-    public Optional<List<MovieDAO>> findByGenre(String genre);
+    public Optional<List<MovieDAO>> findByMovieGenre(String genre);
 
 }

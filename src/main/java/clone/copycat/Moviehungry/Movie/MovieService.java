@@ -34,7 +34,9 @@ public class MovieService {
 
     public List<MovieDTO> getAllMovies() {
         List<MovieDAO> allMovies = movieRepository.findAll();
-        return allMovies.stream().map(x -> mapperMovie.MovieDAO_MovieDTO(x)).collect(Collectors.toList());
+        return allMovies.stream().map(x ->{
+//           x.getMovieReviews().stream().map(x->)
+             return mapperMovie.MovieDAO_MovieDTO(x);}).collect(Collectors.toList());
     }
 
     public MovieDTO addMovie(CreateMovieDTO createMovieDTO) {

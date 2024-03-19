@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("movies/admin")
 public class MovieAdminController {
@@ -24,6 +26,9 @@ public class MovieAdminController {
     @PostMapping("/add")
     public ResponseEntity<?> addNewMovie(@RequestBody CreateMovieDTO movieRequest) {
       MovieDTO createdMovie=  movieService.addMovie(movieRequest);
-        return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
+        HashMap<String,Object> response = new HashMap<String,Object>();
+        response.put("Status","movie added successfully");
+        response.put("Added movie:",response);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }
